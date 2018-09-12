@@ -4,8 +4,12 @@ import './index.css';
 
 //React Code
   function Square(props){
+    
+    const winningBackground = '#ffff00';
+    let background = props.winningSquare ? winningBackground: null;
     return (
-    <button className = "square" onClick = {props.onClick}>
+    <button className = "square" onClick = {props.onClick}
+    style = {{backgroundColor : background}} >
     {props.value}
     </button>
     );
@@ -18,6 +22,7 @@ import './index.css';
       <Square 
       value = {this.props.squares[i]}
       onClick = {() => this.props.onClick(i)} 
+      winningSquare = {this.props.winner && this.props.winner.winningSquares.includes(i)}
       />);
     }
   
@@ -96,7 +101,7 @@ import './index.css';
       });
       let status;
       if (winner){
-        status = 'Winner: ' + winner;
+        status = 'Winner: ' + winner.winner;
       }
       //if there is a draw
       else if (current.squares.every(function(i) { return i !== null; })){
@@ -109,6 +114,7 @@ import './index.css';
         <div className="game">
           <div className="game-board">
             <Board 
+            winner = {winner}
             squares = {current.squares}
             onClick = {(i) => this.handleClick(i)}
             />
@@ -145,8 +151,10 @@ import './index.css';
       const [a,b,c] = lines[i];
       if (squares[a] && squares[a] === squares[b] 
         && squares[a] === squares[c]){
-          return squares[a];
-        }
+          return {winner : squares[a],
+                 winningSquares : lines[i],
+          };
+               }
     }
     return null;
   }
