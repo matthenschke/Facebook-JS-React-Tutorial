@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 <br>
-The tutorial can be found [here] (https://reactjs.org/tutorial/tutorial.html)
+The tutorial can be found [here](https://reactjs.org/tutorial/tutorial.html)
 <br>
 
 Below you will find some information on how to perform common tasks.<br>
